@@ -14,7 +14,10 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 import com.pagefactory.DQGHomepage;
-import com.pagefactory.Datasource_Validation;
+import com.pagefactory.DQG_Users;
+import com.pagefactory.Dashboard;
+import com.pagefactory.DataQualityRules;
+import com.pagefactory.DataSource;
 import com.utilspage.Constants;
 
 import com.utilspage.PropertyFile;
@@ -29,13 +32,13 @@ public class BaseClass {
 	
 	public static WebDriver driver;
 	
-//	public LoginPage loginpage; 
-//	public DashdriverardPage  dashdriverardPage;
-//	public AddNewCustomer Addnewbutton;
-//	public AddCutomerInfo Addcustomerinformation;
-//	public Logout logout;\
+
+	
 	public DQGHomepage dqhomepage;
-	public Datasource_Validation validations;
+	public DataSource datasource;
+	public DataQualityRules dqrules;
+	public DQG_Users dqgUsers;
+	public Dashboard dash;
 	
 	
 	
@@ -70,27 +73,26 @@ public class BaseClass {
 	 }
 	 @BeforeMethod
 	 public void login() throws AWTException, Throwable {
-//		 loginpage=new LoginPage(driver);
-//		 dashdriverardPage=new DashdriverardPage(driver);
-//		 Addnewbutton= new AddNewCustomer(driver);
-//		 Addcustomerinformation=new AddCutomerInfo(driver);
-//		 LoginPage logout=new LoginPage(driver);
-	     
-//		loginpage.clearName();
-//		loginpage.clearpasswordName();
-//		loginpage.clickLogin();
-		
+
+		 
 		 dqhomepage =new DQGHomepage(driver);
-		 validations =new Datasource_Validation(driver);
+		 dqhomepage.azure();
+		 dqhomepage.entercredentials();
+		 dqhomepage.password();
+		 dqhomepage.passwordNextBtn();
+		 dqhomepage.nextBtn();
+		 datasource=new DataSource(driver);
+		 dqrules=new DataQualityRules(driver);
+		 dqgUsers=new DQG_Users(driver);
+		 dash=new Dashboard(driver);
 		 
 	 }
-    @AfterClass
-	 public void teardown()
-	 {
-		 driver.quit();
-		 //log.info("Browser closed");
-		
-	 }
+    //@AfterClass
+	/*
+	 * public void teardown() { driver.quit(); //log.info("Browser closed");
+	 * 
+	 * }
+	 */
 	public void url() {
 		driver.get(url);
 		//log.info("URL is Launched");

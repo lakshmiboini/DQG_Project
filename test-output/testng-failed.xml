@@ -6,7 +6,6 @@
       <class name="com.pageobjectmodel.DQG_Test_Run">
         <methods>
           <include name="login"/>
-          <include name="teardown"/>
           <include name="test"/>
           <include name="setup"/>
         </methods>
